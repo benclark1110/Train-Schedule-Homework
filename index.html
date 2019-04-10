@@ -5,17 +5,61 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <title>Train Activity</title>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 <body>
-
-
-
-
-
-
-    
+<div class="container">
+                <div class="jumbotron jumbotron-fluid">
+                        <h1 class="display-4">Anytime is Train Time</h1>
+                        <p class="lead">Choo Choo.  Chee Chee.</p>
+                </div>
+        
+        <div class="card">
+                <div class="card-header">Current Train Schedule</div>
+                <div class="card-body">
+                        <table class="table">
+                                <thead>
+                                         <tr>
+                                        <th scope="col">Train Name</th>
+                                        <th scope="col">Destination</th>
+                                        <th scope="col">Frequency (min)</th>
+                                        <th scope="col">Next Arrival</th>
+                                        <th scope="col">Minutes Away</th>
+                                        </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                        </table>
+                </div>
+        </div>
+        <div class="card">
+                <div class="card-header">Current Train Schedule</div>
+                <div class="card-body">
+                        <form>
+                                <div class="form-group">
+                                        <label for="exampleInputEmail1">Train Name</label>
+                                        <input class="form-control" id="trainName" aria-describedby="emailHelp" placeholder="Soul Train">
+                                </div>
+                                <div class="form-group">
+                                        <label for="exampleInputPassword1">Destination</label>
+                                        <input class="form-control" id="destination" placeholder="Atlanta">
+                                </div>
+                                <div class="form-group">
+                                        <label for="exampleInputPassword1">First Train Time (HH:mm - military time)</label>
+                                        <input class="form-control" id="firstTrain" placeholder="17:23">
+                                </div>
+                                <div class="form-group">
+                                        <label for="exampleInputPassword1">Frequency (min)</label>
+                                        <input class="form-control" id="frequency" placeholder="45">
+                                </div>
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                        </form>
+                </div>
+        </div>
+</div>
+        <script src="https://www.gstatic.com/firebasejs/5.9.3/firebase.js"></script> 
         <script src="assets/javascript/app.js"></script>
 </body>
 </html>
