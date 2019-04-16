@@ -21,13 +21,15 @@ $(document).ready(function () {
     destination = $("#destination").val().trim();
     frequency = $("#frequency").val().trim();
     firstTrain = $("#firstTrain").val().trim();
+    currentTime = moment().format("HH:mm");
     $("#trainName").empty();/////////////////////need this to work
 
     database.ref().push({
       trainName: trainName,
       destination: destination,
       frequency: frequency,
-      firstTrain: firstTrain,/////again, may not be needed in firebase
+      firstTrain: firstTrain,
+      currentTime: currentTime,/////again, may not be needed in firebase
       //dateAdded: firebase.database.ServerValue.TIMESTAMP
     });
   })
@@ -39,14 +41,14 @@ $(document).ready(function () {
     var $tdFrequency = $("<td>").text(snapshot.val().frequency);
 
         // First Time (pushed back 1 year to make sure it comes before current time)
-        var firstTimeConverted = moment(firstTrain, "HH:mm");
-    
-        // Current Time
-        var currentTime = moment();
+        var firstTimeConverted = moment(snapshot.val().firstTrain).format("HH:mm");
+        console.log(firstTimeConverted);
+        console.log((snapshot.val().currentTime));
     
         // Difference between the times
       
-        var diffTime = firstTimeConverted.diff(moment(), "minutes")
+        var diffTime = firstTimeConverted.diff((snapshot.val().currentTime), "minutes")
+        console.log(diffTime);
     
         // Time apart (remainder)
         var tRemainder = Math.abs(diffTime % frequency);
@@ -57,10 +59,12 @@ $(document).ready(function () {
         // Next Train
         var nextTrain = moment().add(tMinutesTillTrain, "minutes");
     
-        if ( firstTimeConverted > currentTime){
+        if ( firstTimeConverted > (snapshot.val().currentTime)){
+          console.log("option - 1");
           var $tdMinutesTillTrain = $("<td>").text(diffTime);
           var $tdNextTrain = $("<td>").text(moment(firstTimeConverted).format("HH:mm"));
         } else {
+          console.log("option - 2");
           var $tdMinutesTillTrain = $("<td>").text(tMinutesTillTrain);
           var $tdNextTrain = $("<td>").text(moment(nextTrain).format("HH:mm"));
         }
